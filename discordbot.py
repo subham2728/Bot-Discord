@@ -8,8 +8,9 @@ if __name__ == "__main__":
         
         load_dotenv()
         API_TOKEN = os.environ.get("API_TOKEN")
-
-        bot=commands.Bot(command_prefix='.')
+        client = discord.Client()
+        bot = commands.Bot(command_prefix='.')
+        
         @bot.event
         async def on_ready():
                 print("We have logged in as {0.user}".format(bot))
@@ -18,11 +19,10 @@ if __name__ == "__main__":
         @commands.has_permissions(manage_messages=True)
         async def clear(ctx,amount=None):
                 await ctx.channel.purge(limit=amount)
-                await message.channel.send("Deleted")
         
-        @bot.event
+        @client.event
         async def on_message(message):
-                if message.author.id==bot.user.id:
+                if message.author.id==client.user.id:
                         return
                 msg_content=message.content.lower()
                 
