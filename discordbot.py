@@ -20,9 +20,9 @@ if __name__ == "__main__":
         async def clear(ctx,amount=None):
                 await ctx.channel.purge(limit=amount)
         
-        @client.event
+        @bot.event
         async def on_message(message):
-                if message.author.id==client.user.id:
+                if message.author.id==bot.user.id:
                         return
                 msg_content=message.content.lower()
                 
