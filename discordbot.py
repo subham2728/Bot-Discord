@@ -20,7 +20,7 @@ if __name__ == "__main__":
                 await ctx.channel.purge(limit=amount)
              
         
-        @bot.event
+        @bot.command()
         async def on_message(message):
                 if message.author.id==bot.user.id:
                         return
