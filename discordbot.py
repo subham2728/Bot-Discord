@@ -25,7 +25,7 @@ if __name__ == "__main__":
                 latency = round(bot.latency * 1000, 1)
                 await ctx.send(f"Pong! {latency}ms")
         
-        @bot.command()
+        @bot.listen()
         async def on_message(message):
                 if message.author.id==bot.user.id:
                         return
