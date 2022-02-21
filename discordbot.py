@@ -10,17 +10,8 @@ if __name__ == "__main__":
         API_TOKEN = os.environ.get("API_TOKEN")
 
         bot=commands.Bot(command_prefix='.')
-        @bot.event
-        async def on_ready():
-                print("We have logged in as {0.user}".format(bot))
-
-        @bot.command()
-        @commands.has_permissions(manage_messages=True)
-        async def clear(ctx,amount=None):
-                await ctx.channel.purge(limit=amount)
-             
         
-        @bot.command()
+        @bot.event
         async def on_message(message):
                 if message.author.id==bot.user.id:
                         return
@@ -31,6 +22,19 @@ if __name__ == "__main__":
                 if any(word in msg_content for word in links):
                         await message.delete()
                         await message.channel.send("**No nitro scem allowed in this channel**")
+        @bot.event
+        async def on_ready():
+                print("We have logged in as {0.user}".format(bot))
+        
+        
+        @bot.command()
+        @commands.has_permissions(manage_messages=True)
+        async def clear(ctx,amount=None):
+                await ctx.channel.purge(limit=amount)
+             
+        
+       
+       
 
                 
 bot.run(API_TOKEN)
